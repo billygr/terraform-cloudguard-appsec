@@ -16,7 +16,7 @@ resource "azurerm_resource_group_template_deployment" "template-deployment-appse
   resource_group_name = azurerm_resource_group.rg-appsec-vmss.name
   deployment_mode     = "Complete"
 
-  template_content    = file("files/appsec-vmss-template.json")
+  template_content    = file("files/appsec-template.json")
   parameters_content  = <<PARAMETERS
   {
     "location": {
@@ -43,47 +43,14 @@ resource "azurerm_resource_group_template_deployment" "template-deployment-appse
     "waapAgentFog": {
         "value": ""
     },
-    "adminEmail": {
-        "value": ""
-    },
-    "availabilityZonesNum": {
-        "value": 2
-    },
     "vmSize": {
         "value": "${var.appsec-size}"
     },
     "diskType": {
         "value": "Standard_LRS"
     },
-    "instanceCount": {
-        "value": "${var.appsec-vmss-min}"
-    },
-    "maxInstanceCount": {
-        "value": "${var.appsec-vmss-max}"
-    },
-    "instanceLevelPublicIP": {
+    "waapPublicIP": {
         "value": "yes"
-    },
-    "elbResourceId": {
-        "value": ""
-    },
-    "elbTargetBEAddressPoolName": {
-        "value": ""
-    },
-    "deploymentMode": {
-        "value": "ELBOnly"
-    },
-    "appLoadDistribution": {
-        "value": "SourceIP"
-    },
-    "ilbResourceId": {
-        "value": ""
-    },
-    "ilbTargetBEAddressPoolName": {
-        "value": ""
-    },
-    "ilbLoadDistribution": {
-        "value": "Default"
     },
     "bootstrapScript": {
         "value": ""
@@ -100,11 +67,6 @@ resource "azurerm_resource_group_template_deployment" "template-deployment-appse
     "virtualNetworkName": {
         "value": "${azurerm_virtual_network.vnet-north.name}"
     },
-    "virtualNetworkAddressPrefixes": {
-        "value": [
-            "${azurerm_virtual_network.vnet-north.address_space[0]}"
-        ]
-    },
     "subnet1Name": {
         "value": "${azurerm_subnet.net-north-frontend.name}"
     },
@@ -119,71 +81,6 @@ resource "azurerm_resource_group_template_deployment" "template-deployment-appse
     },
     "subnet2StartAddress": {
         "value": "10.10.1.4"
-    },
-    "check_PointTags": {
-        "value": {
-            "provider": "30DE18BC-F9F6-4F22-9D30-54B8E74CFD5F"
-        }
-    },
-    "sicKey": {
-        "value": ""
-    },
-    "chooseVault": {
-        "value": "none"
-    },
-    "existingKeyVaultRGName": {
-        "value": "${azurerm_resource_group.rg-appsec-vmss.name}"
-    },
-    "keyVaultName": {
-        "value": "vault-${var.appsec-name}"
-    },
-    "numberOfCerts": {
-        "value": 0
-    },
-    "firstCertificate": {
-        "value": ""
-    },
-    "firstCertDescription": {
-        "value": ""
-    },
-    "firstCertPassword": {
-        "value": ""
-    },
-    "secondCertificate": {
-        "value": ""
-    },
-    "secondCertDescription": {
-        "value": ""
-    },
-    "secondCertPassword": {
-        "value": ""
-    },
-    "thirdCertificate": {
-        "value": ""
-    },
-    "thirdCertDescription": {
-        "value": ""
-    },
-    "thirdCertPassword": {
-        "value": ""
-    },
-    "fourthCertificate": {
-        "value": ""
-    },
-    "fourthCertDescription": {
-        "value": ""
-    },
-    "fourthCertPassword": {
-        "value": ""
-    },
-    "fifthCertificate": {
-        "value": ""
-    },
-    "fifthCertDescription": {
-        "value": ""
-    },
-    "fifthCertPassword": {
-        "value": ""
     }
   }
   PARAMETERS 

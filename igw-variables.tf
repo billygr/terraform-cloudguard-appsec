@@ -21,11 +21,3 @@ variable "infinity-token" {
     sensitive = true
     type = string
 }
-variable "appsec-vmss-min" {
-    description = "The min number of gateways"
-    type = string
-}
-variable "appsec-vmss-max" {
-    description = "The max number of gateways"
-    type = string
-}
