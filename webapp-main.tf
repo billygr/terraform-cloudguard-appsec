@@ -27,7 +27,7 @@ resource "azurerm_container_group" "container-app-juiceshop" {
   location            = azurerm_resource_group.rg-app-juiceshop[count.index].location
   resource_group_name = azurerm_resource_group.rg-app-juiceshop[count.index].name
   os_type             = "Linux"
-  ip_address_type     = "private"
+  ip_address_type     = "Private"
   network_profile_id  = azurerm_network_profile.profile-app-juiceshop[count.index].id
 
   container {
