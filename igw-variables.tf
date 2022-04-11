@@ -1,4 +1,4 @@
-variable "appsec-vmss-agreement" {
+variable "appsec-agreement" {
     description = "Have you ever deployed a ckp management before? set to false if not"
     type = bool
     default = true
