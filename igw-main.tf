@@ -1,26 +1,26 @@
 # Accept the agreement for the mgmt-byol for R80.40
-resource "azurerm_marketplace_agreement" "appsec-vmss-agreement" {
-  count = var.appsec-vmss-agreement ? 0 : 1
+resource "azurerm_marketplace_agreement" "appsec-agreement" {
+  count = var.appsec-agreement ? 0 : 1
   publisher = "checkpoint"
   offer = "infinity-gw"
   plan = "infinity-img"
 }
 
 # Create appsec resource group
-resource "azurerm_resource_group" "rg-appsec-vmss" {
+resource "azurerm_resource_group" "rg-appsec" {
   name = "rg-${var.appsec-name}"
   location = var.location
 }
 resource "azurerm_resource_group_template_deployment" "template-deployment-appsec" {
   name                = "${var.appsec-name}-deploy"
-  resource_group_name = azurerm_resource_group.rg-appsec-vmss.name
+  resource_group_name = azurerm_resource_group.rg-appsec.name
   deployment_mode     = "Complete"
 
   template_content    = file("files/appsec-template.json")
   parameters_content  = <<PARAMETERS
   {
     "location": {
-        "value": "${azurerm_resource_group.rg-appsec-vmss.location}"
+        "value": "${azurerm_resource_group.rg-appsec.location}"
     },
     "vmName": {
         "value": "${var.appsec-name}"
@@ -84,7 +84,7 @@ resource "azurerm_resource_group_template_deployment" "template-deployment-appse
     }
   }
   PARAMETERS 
-  depends_on = [azurerm_resource_group.rg-appsec-vmss,azurerm_subnet.net-north-frontend,azurerm_subnet.net-north-backend]
+  depends_on = [azurerm_resource_group.rg-appsec,azurerm_subnet.net-north-frontend,azurerm_subnet.net-north-backend]
 }
 
 resource "azurerm_dns_a_record" "juiceshop-prod-record" {
@@ -92,15 +92,15 @@ resource "azurerm_dns_a_record" "juiceshop-prod-record" {
   zone_name           = azurerm_dns_zone.mydns-public-zone.name
   resource_group_name = azurerm_resource_group.rg-dns-myzone.name
   ttl                 = 300
-  records             = [jsondecode(azurerm_resource_group_template_deployment.template-deployment-appsec.output_content).applicationAddress.value]
-  depends_on = [azurerm_resource_group_template_deployment.template-deployment-appsec]
+  records             = ["1.2.3.4"]
+  depends_on          = [azurerm_resource_group_template_deployment.template-deployment-appsec]
 }
 resource "azurerm_dns_a_record" "juiceshop-staging-record" {
   name                = "juiceshop-staging"
   zone_name           = azurerm_dns_zone.mydns-public-zone.name
   resource_group_name = azurerm_resource_group.rg-dns-myzone.name
   ttl                 = 300
-  records             = [jsondecode(azurerm_resource_group_template_deployment.template-deployment-appsec.output_content).applicationAddress.value]
+  records             = ["1.2.3.4"]
   depends_on          = [azurerm_resource_group_template_deployment.template-deployment-appsec]
 }
 
