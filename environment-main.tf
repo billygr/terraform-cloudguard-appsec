@@ -9,7 +9,11 @@ terraform {
 
 # Configuration of Terraform with Azure environment variables
 provider "azurerm" {
-  features { }
+  features { 
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 #  client_id           = var.azure-client-id
 #  client_secret       = var.azure-client-secret
 #  subscription_id     = var.azure-subscription
