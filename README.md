@@ -1,7 +1,7 @@
 # CloudGuard AppSec Scalable Infinity Gateway Architecture
 This Terraform project is meant to be used as a template to demonstrate or build a test environment.    
 It creates an infrastructure composed of a North-hub and two spokes: one for the production and one for the staging.     
-In the North-hub, an Appsec Virtual Machine Scale-Set is created, and inside the spokes is created a container instance of a vulnerable application ([Juice Shop](https://github.com/bkimminich/juice-shop)).
+In the North-hub, an Appsec Virtual Machine is created, and inside the spokes is created a container instance of a vulnerable application ([Juice Shop](https://github.com/bkimminich/juice-shop)).
 
 ## Which are the components created?
 The project creates the following resources and combine them:    
@@ -10,7 +10,7 @@ The project creates the following resources and combine them:
 3. **Subnets**: inside the vNets
 4. **Vnet peerings** (as shown in the design below)
 5. **Routing table**: associated with the network in the spokes
-6. **Appsec Infinity Gateway**: a Virtual Machine Scale-Set of AppSec gateways
+6. **Appsec Infinity Gateway**: a Virtual Machine of AppSec gateway
 7. **Container Instances**: in the spokes running a vulnerable application
 
 ## Prerequisite
@@ -31,17 +31,13 @@ azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 location            = "France Central"
 mydns-zone          = "<yourzone>.com"
 
-# Have you ever deployed an Appsec Virtual Machine Scale-Set in this Subscription?
-appsec-vmss-agreement = true
-
 # AppSec Variables
 appsec-name         = "vmss-appsec"
 appsec-size         = "Standard_DS2_v2"
 admin-pwd           = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 infinity-token      = "cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-appsec-vmss-min     = "2"
-appsec-vmss-max     = "3" 
+
 ```
 If you want (or need) to further customize other project details, you can change defaults in the different __*name-variables.tf*__ files.   
 Here you will be also able to find the descriptions that explain what each variable is used for.

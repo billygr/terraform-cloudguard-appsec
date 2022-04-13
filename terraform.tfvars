@@ -4,17 +4,13 @@ azure-client-secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 azure-tenant        = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-location            = "France Central"
+location            = "West Europe"
 mydns-zone          = "<yourzone>.com"
-
-# Have you ever deployed an Appsec Virtual Machine Scale-Set in this Subscription?
-appsec-vmss-agreement = true
+net-north           = "net-north"
+net-spoke           = "net-spoke"
 
 # AppSec Variables
-appsec-name         = "vmss-appsec"
+appsec-name         = "appsec"
 appsec-size         = "Standard_DS2_v2"
 admin-pwd           = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 infinity-token      = "cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-appsec-vmss-min     = "2"
-appsec-vmss-max     = "3"
