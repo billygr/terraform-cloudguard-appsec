@@ -1,8 +1,8 @@
 # Set in this file your deployment variables
-azure-client-id     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-client-secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-tenant        = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-client-id     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-client-secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-tenant        = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 location            = "West Europe"
 mydns-zone          = "<yourzone>.com"
