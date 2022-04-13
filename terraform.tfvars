@@ -5,7 +5,7 @@
 #azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 location            = "West Europe"
-mydns-zone          = "<yourzone>.com"
+mydns-zone          = "contoso.com"
 net-north           = "net-north"
 net-spoke           = "net-spoke"
 
