@@ -1,4 +1,4 @@
-# CloudGuard AppSec Scalable Infinity Gateway Architecture
+# CloudGuard AppSec Infinity Gateway Architecture
 This Terraform project is meant to be used as a template to demonstrate or build a test environment.    
 It creates an infrastructure composed of a North-hub and two spokes: one for the production and one for the staging.     
 In the North-hub, an Appsec Virtual Machine is created, and inside the spokes is created a container instance of a vulnerable application ([Juice Shop](https://github.com/bkimminich/juice-shop)).
@@ -23,16 +23,21 @@ The only thing that you need to do is changing the __*terraform.tfvars*__ file l
 
 ```hcl
 # Set in this file your deployment variables
-azure-client-id     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-client-secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-tenant        = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-client-id     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-client-secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-tenant        = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#azure-subscription  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-location            = "France Central"
-mydns-zone          = "<yourzone>.com"
+location            = "West Europe"
+mydns-zone          = "contoso.com"
+net-north           = "net-north"
+net-spoke           = "net-spoke"
+
+# Have you ever deployed an Appsec Virtual Machine Scale-Set in this Subscription?
+appsec-agreement = true
 
 # AppSec Variables
-appsec-name         = "vmss-appsec"
+appsec-name         = "appsec"
 appsec-size         = "Standard_DS2_v2"
 admin-pwd           = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 infinity-token      = "cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
